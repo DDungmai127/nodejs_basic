@@ -5,7 +5,7 @@ let router = express.Router();
 const initWebRoute = (app) =>{
     router.get('/', homeController.getHomepage );
         // res.render('index.ejs') , Nếu để thế này thì là theo mô hình client server       
-    
+    router.get('/detail/users/:id', homeController.getDetailPage) // /:id ( id được hiểu ở đây là biến), với path thì /: <..>: đặt thế nào nó cũng là biến
     router.get('/about', (req, res) =>{
         res.send(`I'm DungMai`); 
     })

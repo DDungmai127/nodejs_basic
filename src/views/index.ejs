@@ -27,6 +27,8 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Address</th>
+                        <th>Services</th>
                     </tr>
                 </thead>            
                 <tbody>
@@ -35,21 +37,25 @@
                         <td>Caption</td>
                         <td>Levi</td>
                         <td>npm@gmail.com</td>
+                        <td>Tp. Ho Chi Minh</td>
+                        <td>None</td>
                     </tr>
                     <% for(let i=0; i < dataUser.length; i++) { %>
                         <tr>
                           <td><%= dataUser[i].id %></td>
-                          <td><%= dataUser[i].firstname %></td>
-                          <td><%= dataUser[i].lastname %></td>
+                          <td><%= dataUser[i].firstName %></td>
+                          <td><%= dataUser[i].lastName %></td>
                           <td><%= dataUser[i].email %></td>
+                          <td><%= dataUser[i].address %></td>
                           <!-- những key ở trên được tạo ra và gọi giống với key trong file controllers
                         File ejs khi truyền biến thì phải có <%  %> trên cùng một dòng-->
-                          <td>
+                         <td>
                             <a href="/detail/users/<%= dataUser[i].id %>">Detail</a>
                             <button type="button">edit</button>
                             <button type="button">delete</button>
                           </td>
                         </tr>
+
                      <% } %>
                 </tbody>    
            </table>
