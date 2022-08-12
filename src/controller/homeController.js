@@ -7,7 +7,9 @@ let getHomepage =async(req, res) =>{
 /* giải thích:
 - cú pháp ở trên là một arr destructure
 - cái await pool.excute thì mình chưa hiểu lắm, tuy nhiên ta biết được là nó sẽ trả về một array gồm
-rows và fields như tên mình đặt cho nó thôi*/
+rows và fields như tên mình đặt cho nó thôi
+- Câu lệnh được đặt trong excute là cách Select của mysql (tự search mạng)
+- Còn dấu '?' bên dưới cũng ở trong excute nó thể hiện giá trị động*/
     return res.render('index.ejs', {dataUser : rows} )   ;
 }
 let getDetailPage = async(req, res) =>{
@@ -15,8 +17,16 @@ let getDetailPage = async(req, res) =>{
   let [user] = await pool.execute(`select * from users where id = ?`, [userId]);
   return res.send(JSON.stringify(user))
 }
+let createNewUsers = async (req, res)=>{
+  console.log("Check req", req.body);
+  let {firstName, lastName, email, address} = req.body;
+  await pool.execute('insert into users(firstName, lastName, email, address) values (?, ?, ?, ?)',
+   [firstName, lastName, email, address])
+   // quay lai trang chu
+  return res.redirect('/')
+}
 module.exports = {
-  getHomepage, getDetailPage 
+  getHomepage, getDetailPage , createNewUsers
 
 }
     // connection.query(
